@@ -20,7 +20,7 @@ Permite realizar las siguientes conversiones:
 
 ## 📱 Vista previa
 
-> Puedes abrir el archivo directamente en cualquier navegador moderno (Chrome, Edge, Firefox, Safari, etc).
+> https://conversorbgmonline.netlify.app/
 
 ---
 
@@ -29,4 +29,4 @@ Permite realizar las siguientes conversiones:
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/conversor-pesos-gramos-libras.git
+https://github.com/breinergg/conversor-pesos-gramos-libras.git
