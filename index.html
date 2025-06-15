@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor de Pesos y Libras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            padding: 20px;
+            color: #333;
+        }
+
+        .contenedor {
+            background: #fff;
+            padding: 25px 20px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: 25px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contenedor:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #26a69a;
+            box-shadow: 0 0 8px rgba(38, 166, 154, 0.3);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #26a69a, #009688);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #009688, #00796b);
+        }
+
+        .resultado {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .contenedor {
+                padding: 20px 15px;
+                margin: 20px 10px;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Gramos a Pesos</h2>
+    <div class="form-group">
+        <label for="gramos">Cantidad de gramos:</label>
+        <input type="number" id="gramos" placeholder="Ej: 100">
+    </div>
+    <div class="form-group">
+        <label for="precioLibra">Precio por libra (COP):</label>
+        <input type="number" id="precioLibra" placeholder="Ej: 1200">
+    </div>
+    <button onclick="convertirAPesos()">Calcular valor</button>
+    <div class="resultado" id="resultadoPesos"></div>
+</div>
+
+<div class="contenedor">
+    <h2>Pesos a Gramos</h2>
+    <div class="form-group">
+        <label for="pesos">Cantidad en pesos (COP):</label>
+        <input type="number" id="pesos" placeholder="Ej: 3000">
+    </div>
+    <div class="form-group">
+        <label for="precioLibra2">Precio por libra (COP):</label>
+        <input type="number" id="precioLibra2" placeholder="Ej: 1200">
+    </div>
+    <button onclick="convertirAGramos()">Calcular gramos</button>
+    <div class="resultado" id="resultadoGramos"></div>
+</div>
+
+<div class="contenedor">
+    <h2>Gramos a Libras</h2>
+    <div class="form-group">
+        <label for="gramosLibra">Cantidad de gramos:</label>
+        <input type="number" id="gramosLibra" placeholder="Ej: 1000">
+    </div>
+    <button onclick="convertirALibras()">Calcular libras</button>
+    <div class="resultado" id="resultadoLibras"></div>
+</div>
+
+<script>
+    function convertirAPesos() {
+        let gramos = parseFloat(document.getElementById('gramos').value);
+        let precioLibra = parseFloat(document.getElementById('precioLibra').value);
+
+        if (!gramos || !precioLibra) {
+            document.getElementById('resultadoPesos').innerText = "Por favor ingresa todos los datos.";
+            return;
+        }
+
+        let valorPesos = (gramos / 500) * precioLibra;
+        document.getElementById('resultadoPesos').innerText = `Valor: ${valorPesos.toFixed(2)} COP`;
+    }
+
+    function convertirAGramos() {
+        let pesos = parseFloat(document.getElementById('pesos').value);
+        let precioLibra = parseFloat(document.getElementById('precioLibra2').value);
+
+        if (!pesos || !precioLibra) {
+            document.getElementById('resultadoGramos').innerText = "Por favor ingresa todos los datos.";
+            return;
+        }
+
+        let gramos = (pesos / precioLibra) * 500;
+        document.getElementById('resultadoGramos').innerText = `Cantidad: ${gramos.toFixed(2)} gramos`;
+    }
+
+    function convertirALibras() {
+        let gramos = parseFloat(document.getElementById('gramosLibra').value);
+
+        if (!gramos) {
+            document.getElementById('resultadoLibras').innerText = "Por favor ingresa la cantidad de gramos.";
+            return;
+        }
+
+        let libras = gramos / 500;
+        document.getElementById('resultadoLibras').innerText = `Cantidad: ${libras.toFixed(2)} libras`;
+    }
+</script>
+
+</body>
+</html>
